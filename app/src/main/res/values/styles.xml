@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppButtonOnPrimary" >
+        <item name="android:background">@drawable/selector_background_profile_button</item>
+        <item name="android:textAppearance">@style/AppTextLabel.S16</item>
+    </style>
+
+
+    <style name="AppTextLabel.S16" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/gray_300</item>
+    </style>
+</resources>

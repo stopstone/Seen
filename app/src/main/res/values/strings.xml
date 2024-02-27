@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Seen</string>
+    <string name="description_symbol_image">아이콘 심볼 마크</string>
+    <string name="label_app_title_text">분실물 찾기 서비스</string>
+    <string name="label_app_sub_title_text">이웃의 분실물을 검색하고 찾아주세요.</string>
+    <string name="button_google_login_text">Google 간편로그인</string>
+    <string name="label_profile_setting_text">프로필 설정</string>
+    <string name="description_profile_image_add_text">프로필 사진 추가 버튼</string>
+    <string name="label_add_profile_guide_message">당신을 대표하는 프로필 이미지를 등록해요</string>
+    <string name="label_nickname">닉네임</string>
+    <string name="hint_profile_nickname_text">닉네임을 입력해요</string>
+    <string name="label_profile_complete_button">시작해요</string>
 </resources>
