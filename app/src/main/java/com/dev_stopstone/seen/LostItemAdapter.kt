@@ -1,9 +1,11 @@
 package com.dev_stopstone.seen
 
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dev_stopstone.seen.databinding.ItemLostBinding
 
 class LostItemAdapter(private val items: List<LostItem>) :
@@ -24,7 +26,11 @@ class LostItemAdapter(private val items: List<LostItem>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lostItem: LostItem) {
             with(binding) {
-                ivLostItemThumbnailImage.setImageURI(lostItem.itemUrlImage.toUri())
+                val imageUri: Uri = lostItem.itemUrlImage.toUri()
+                Glide.with(ivLostItemThumbnailImage)
+                    .load(imageUri)
+                    .centerCrop()
+                    .into(ivLostItemThumbnailImage)
                 tvLostItemTitle.text = lostItem.title
                 tvLostItemLocation.text = lostItem.location
                 tvLostItemPublishedAt.text = lostItem.createAt
