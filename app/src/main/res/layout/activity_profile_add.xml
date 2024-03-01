@@ -21,8 +21,8 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_add_profile_image"
-        style="@style/AppRoundedImage"
-        app:shapeAppearanceOverlay="@style/AppRoundedImage"
+        style="@style/AppRoundedImageMedium"
+        app:shapeAppearanceOverlay="@style/AppRoundedImageMedium"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="10dp"

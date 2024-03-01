@@ -6,11 +6,30 @@
         <item name="android:textAppearance">@style/AppTextLabel.S16</item>
     </style>
 
-    <style name="AppRoundedImage" >
+    <style name="AppRoundedImageLarge" >
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="AppRoundedImageMedium" >
         <item name="cornerSize">6dp</item>
         <item name="android:background">@drawable/background_gray_400</item>
     </style>
 
+    <style name="AppTextTitle.S16" parent="TextAppearance.Material3.TitleMedium" >
+        <item name="android:textColor">@color/gray_900</item>
+    </style>
+
+    <style name="AppTextTitle.S16.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTextBody" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">@color/gray_500</item>
+    </style>
+
+    <style name="AppTextBody.S10">
+        <item name="android:textSize">10sp</item>
+    </style>
 
     <style name="AppTextLabel.S16" parent="TextAppearance.Material3.LabelLarge">
         <item name="android:textSize">16sp</item>
