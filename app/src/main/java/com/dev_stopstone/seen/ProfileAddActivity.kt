@@ -10,9 +10,8 @@ import androidx.core.widget.addTextChangedListener
 import com.dev_stopstone.seen.databinding.ActivityProfileAddBinding
 
 class ProfileAddActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityProfileAddBinding
-    lateinit var selectedImageUri: Uri
+    private lateinit var selectedImageUri: Uri
     private val pickImage =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
@@ -27,25 +26,7 @@ class ProfileAddActivity : AppCompatActivity() {
         binding = ActivityProfileAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.etInputProfileNickname.addTextChangedListener {
-            binding.btnCompleteSetting.isEnabled =
-                binding.etInputProfileNickname.text?.length!! >= 4
-        }
-
-        binding.ivAddProfileImage.setOnClickListener {
-            openGallery()
-        }
-
-        binding.btnCompleteSetting.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            val user = User(
-                nickName = "${binding.etInputProfileNickname.text}",
-                profileImageUrl = selectedImageUri
-            )
-            intent.putExtra("user", user)
-            startActivity(intent)
-            finish()
-        }
+        setListener()
     }
 
     private fun openGallery() {
@@ -53,7 +34,30 @@ class ProfileAddActivity : AppCompatActivity() {
         pickImage.launch(galleryIntent)
     }
 
-    companion object {
-        private const val REQUEST_PERMISSION_CODE = 100
+    private fun createUserInfo(): User {
+        return User(
+            nickName = "${binding.etInputProfileNickname.text}",
+            profileImageUrl = selectedImageUri
+        )
+    }
+
+    private fun setListener() {
+        with(binding) {
+            etInputProfileNickname.addTextChangedListener {
+                btnCompleteSetting.isEnabled =
+                    etInputProfileNickname.text?.length!! >= 4
+            }
+
+            ivAddProfileImage.setOnClickListener {
+                openGallery()
+            }
+
+            btnCompleteSetting.setOnClickListener {
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                intent.putExtra("user", createUserInfo())
+                startActivity(intent)
+                finish()
+            }
+        }
     }
 }
