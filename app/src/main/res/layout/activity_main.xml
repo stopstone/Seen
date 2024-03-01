@@ -6,22 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_user_profile"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/container_home"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/bottom_navigation_home"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/nav_graph" />
 
-    <TextView
-        android:id="@+id/tv_user_nickname"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation_home"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        app:itemIconTint="@color/selector_navigation"
+        app:itemTextColor="@color/selector_navigation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:menu="@menu/menu_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

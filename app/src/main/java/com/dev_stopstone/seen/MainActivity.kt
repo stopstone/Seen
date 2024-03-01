@@ -5,20 +5,23 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.dev_stopstone.seen.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private lateinit var binding : ActivityMainBinding
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        val user = Intent().getParcelableExtra("user", User::class.java)
-
-        binding.ivUserProfile.setImageURI(user?.profileImageUrl)
-        binding.tvUserNickname.text = user?.nickName ?: ""
+        val navController = supportFragmentManager.findFragmentById(R.id.container_home)
+            ?.findNavController()
+        navController?.let {
+            binding.bottomNavigationHome.setupWithNavController(it)
+        }
     }
 }
