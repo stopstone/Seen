@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "464694612897",
+    "project_id": "seen-91efe",
+    "storage_bucket": "seen-91efe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:464694612897:android:2ff959836df64e4ca671e0",
+        "android_client_info": {
+          "package_name": "com.dev_stopstone.seen"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "464694612897-jtta9i6m8qk0tvahvct0ppqf3leo7era.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev_stopstone.seen",
+            "certificate_hash": "d5feae1cba4af6920888a181446c7b3355832e40"
+          }
+        },
+        {
+          "client_id": "464694612897-02krig0cbti041vag7ls8967qatqhjtf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA84En2ghuE7s-tzkG68qxYdMtIp_glQ7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "464694612897-02krig0cbti041vag7ls8967qatqhjtf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
