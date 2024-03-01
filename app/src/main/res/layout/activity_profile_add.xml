@@ -19,20 +19,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/btn_add_profile_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_add_profile_image"
+        style="@style/AppRoundedImage"
+        app:shapeAppearanceOverlay="@style/AppRoundedImage"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/background_gray_400"
         android:contentDescription="@string/description_profile_image_add_text"
-        android:padding="30dp"
-        android:scaleType="fitCenter"
+        android:scaleType="centerCrop"
         android:src="@drawable/ic_add_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_profile_setting_text"
-        app:tint="@color/blue_200" />
+        app:layout_constraintTop_toBottomOf="@id/tv_label_profile_setting_text" />
 
     <TextView
         android:id="@+id/tv_add_profile_nickname_text"
@@ -45,7 +44,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_add_profile_image" />
+        app:layout_constraintTop_toBottomOf="@id/iv_add_profile_image" />
 
     <TextView
         android:id="@+id/tv_label_profile_nickname"
@@ -73,6 +72,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_label_profile_nickname" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_complete_setting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/label_profile_complete_button"
