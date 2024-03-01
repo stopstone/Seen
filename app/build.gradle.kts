@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.stopstone.seen"
+    namespace = "com.dev_stopstone.seen"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.stopstone.seen"
+        applicationId = "com.dev_stopstone.seen"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

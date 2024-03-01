@@ -1,4 +1,4 @@
-package com.stopstone.seen
+package com.dev_stopstone.seen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
