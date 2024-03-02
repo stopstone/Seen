@@ -19,4 +19,12 @@
     <string name="label_start_talk_button">대화해요</string>
     <string name="description_lost_item_bookmark">즐겨찾기</string>
     <string name="label_lost_item_reward">사례금</string>
+    <string name="label_lost_item_title">분실물 이름</string>
+    <string name="hint_register_item_title">분실물 등록할 제목을 입력해주세요.</string>
+    <string name="label_description">설명</string>
+    <string name="hint__register_item_description">분실물을 찾을 수 있도록 설명을 남겨주세요.\n자세하게 남기면 좋아요</string>
+    <string name="label_location">분실 장소</string>
+    <string name="hint_find_location">위치 찾기</string>
+    <string name="label_reward_price">₩ 0</string>
+    <string name="label_register_item_button">등록해요</string>
 </resources>

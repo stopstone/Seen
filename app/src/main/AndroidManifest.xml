@@ -4,9 +4,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
 
     <application
         android:allowBackup="true"
@@ -26,8 +27,8 @@
 
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/AppTheme.Splash"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,6 +38,10 @@
 
         <activity
             android:name=".ProfileAddActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".RegisterLostItemActivity"
             android:exported="false" />
     </application>
 
