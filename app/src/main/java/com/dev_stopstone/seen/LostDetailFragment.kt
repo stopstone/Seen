@@ -34,6 +34,7 @@ class LostDetailFragment : Fragment() {
             tvLostItemDetailPublishAt.text = lostItem.createAt
             tvLostItemDescription.text = lostItem.description
             tvLostItemDate.text = lostItem.lostDate
+            tvLostItemRewardPrice.text = "${lostItem.rewardPrice}"
         }
     }
 }

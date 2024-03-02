@@ -12,4 +12,5 @@ data class LostItem(
     val location: String,
     val lostDate: String,
     val createAt: String,
+    val rewardPrice: Int,
 ) : Parcelable
