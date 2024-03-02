@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dev_stopstone.seen.databinding.ItemLostBinding
 
-class LostItemAdapter(private val items: List<LostItem>) :
+class LostItemAdapter(private val items: List<LostItem>, private val listener: ItemClickListener) :
     RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LostItemViewHolder {
-        return LostItemViewHolder.from(parent)
+        return LostItemViewHolder.from(parent, listener)
     }
 
     override fun getItemCount(): Int {
@@ -22,9 +22,15 @@ class LostItemAdapter(private val items: List<LostItem>) :
         holder.bind(items[position])
     }
 
-    class LostItemViewHolder(private val binding: ItemLostBinding) :
+    class LostItemViewHolder(
+        private val binding: ItemLostBinding,
+        private val listener: ItemClickListener
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lostItem: LostItem) {
+            itemView.setOnClickListener {
+                listener.onClickLostItem(lostItem)
+            }
             with(binding) {
                 val imageUri: Uri = lostItem.itemUrlImage.toUri()
                 Glide.with(ivLostItemThumbnailImage)
@@ -38,13 +44,13 @@ class LostItemAdapter(private val items: List<LostItem>) :
         }
 
         companion object {
-            fun from(parent: ViewGroup): LostItemViewHolder {
+            fun from(parent: ViewGroup, listener: ItemClickListener): LostItemViewHolder {
                 val binding = ItemLostBinding.inflate(
                     LayoutInflater.from(parent.context),
                     parent,
                     false
                 )
-                return LostItemViewHolder(binding)
+                return LostItemViewHolder(binding, listener)
             }
         }
 

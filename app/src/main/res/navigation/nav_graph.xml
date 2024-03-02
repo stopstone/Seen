@@ -9,5 +9,18 @@
         android:id="@+id/navigation_home"
         android:name="com.dev_stopstone.seen.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_lost_detail"
+            app:destination="@id/navigation_lost_detail" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_lost_detail"
+        android:name="com.dev_stopstone.seen.LostDetailFragment"
+        android:label="LostDetailFragment"
+        tools:layout="@layout/fragment_lost_detail">
+        <argument
+            android:name="lostItem"
+            app:argType="com.dev_stopstone.seen.LostItem" />
+    </fragment>
 </navigation>
