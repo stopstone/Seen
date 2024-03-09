@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LostItem(
-    val id: String,
+    val postId: String,
     val title: String,
     val itemUrlImage: String,
     val description: String,

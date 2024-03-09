@@ -16,8 +16,11 @@ class RegisterLostItemActivity : AppCompatActivity() {
 
         with(binding) {
             btnRegisterCompleteButton.setOnClickListener {
+                val currentUser = FirebaseAuth.getInstance().currentUser
+                val database = FirebaseDatabase.getInstance()
+                val postRef = database.reference.child("post").push()
                 val lostItem = LostItem(
-                    id = "0",
+                    postId = currentUser.toString(),
                     title = "${etRegisterItemTitle.text}",
                     itemUrlImage = "image",
                     description = "${etRegisterItemDescription.text}",
@@ -26,12 +29,9 @@ class RegisterLostItemActivity : AppCompatActivity() {
                     createAt = "2024-03-03",
                     rewardPrice = 50000
                 )
-
-                // 현재 로그인된 사용자 정보 가져오기
-                val currentUser = FirebaseAuth.getInstance().currentUser
-
-                val database = FirebaseDatabase.getInstance()
-                database.reference.child("users").setValue(lostItem)
+                postRef.setValue(lostItem).addOnSuccessListener {
+                    finish()
+                }
             }
         }
     }
