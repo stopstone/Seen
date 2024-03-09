@@ -1,4 +1,4 @@
-package com.dev_stopstone.seenapp
+package com.dev_stopstone.seenapp.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater

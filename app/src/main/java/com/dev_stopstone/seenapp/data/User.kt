@@ -1,6 +1,5 @@
-package com.dev_stopstone.seenapp
+package com.dev_stopstone.seenapp.data
 
-import android.net.Uri
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 

@@ -1,4 +1,4 @@
-package com.dev_stopstone.seenapp
+package com.dev_stopstone.seenapp.data
 
 object Storage {
     fun getDummyData(): List<LostItem> {
