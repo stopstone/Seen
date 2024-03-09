@@ -16,7 +16,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
 
         with(binding) {
             btnRegisterCompleteButton.setOnClickListener {
-                val currentUser = FirebaseAuth.getInstance().currentUser
+                val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
                 val database = FirebaseDatabase.getInstance()
                 val postRef = database.reference.child("post").push()
                 val lostItem = LostItem(
