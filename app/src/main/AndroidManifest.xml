@@ -8,6 +8,8 @@
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -41,6 +43,12 @@
         <activity
             android:name=".ui.register.RegisterLostItemActivity"
             android:exported="false" />
-    </application>
 
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="lj8zi1w1sr" />
+        <meta-data
+            android:name="com.naver.maps.map.CLINET_SECRET"
+            android:value="yqKIrCDuxgrZaj1hKCoRlMqhOm2W2A4m3GMJYXFM"/>
+    </application>
 </manifest>

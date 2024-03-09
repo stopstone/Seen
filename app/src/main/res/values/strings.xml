@@ -29,4 +29,5 @@
     <string name="label_register_item_button">등록해요</string>
     <string name="description_my_location">현재 위치 등록</string>
     <string name="description_register_image">이미지 추가</string>
+    <string name="label_register_location_button">위치 등록하기</string>
 </resources>

@@ -70,4 +70,7 @@ dependencies {
     // Network
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
+    implementation("com.naver.maps:map-sdk:3.17.0")
+    implementation("com.google.android.gms:play-services-location:20.0.0")
+
 }

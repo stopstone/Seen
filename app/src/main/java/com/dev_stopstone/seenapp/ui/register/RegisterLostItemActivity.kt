@@ -30,6 +30,10 @@ class RegisterLostItemActivity : AppCompatActivity() {
             }
             rvRegisterPhotoList.adapter = postGalleryAdapter
 
+            ivRegisterItemLocation.setOnClickListener {
+                startActivity(Intent(applicationContext, RegisterLocationActivity::class.java))
+            }
+
             btnRegisterCompleteButton.setOnClickListener {
                 val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
                 val database = FirebaseDatabase.getInstance()
