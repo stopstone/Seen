@@ -1,7 +1,7 @@
-package com.dev_stopstone.seen
+package com.dev_stopstone.seenapp
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class LostItem(

@@ -1,4 +1,4 @@
-package com.dev_stopstone.seen
+package com.dev_stopstone.seenapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.dev_stopstone.seen.databinding.FragmentLostDetailBinding
+import com.dev_stopstone.seenapp.databinding.FragmentLostDetailBinding
 
 class LostDetailFragment : Fragment() {
     private val binding by lazy { FragmentLostDetailBinding.inflate(layoutInflater) }

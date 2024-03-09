@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.dev_stopstone.seen.HomeFragment"
+        android:name="com.dev_stopstone.seenapp.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
@@ -19,16 +19,16 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_lost_detail"
-        android:name="com.dev_stopstone.seen.LostDetailFragment"
+        android:name="com.dev_stopstone.seenapp.LostDetailFragment"
         android:label="LostDetailFragment"
         tools:layout="@layout/fragment_lost_detail">
         <argument
             android:name="lostItem"
-            app:argType="com.dev_stopstone.seen.LostItem" />
+            app:argType="com.dev_stopstone.seenapp.LostItem" />
     </fragment>
     <activity
         android:id="@+id/navigation_register_lost_item"
-        android:name="com.dev_stopstone.seen.RegisterLostItemActivity"
+        android:name="com.dev_stopstone.seenapp.RegisterLostItemActivity"
         android:label="RegisterLostItemActivity"
         tools:layout="@layout/activity_register_lost_item" />
 </navigation>

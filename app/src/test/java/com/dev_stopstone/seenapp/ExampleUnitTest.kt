@@ -1,4 +1,4 @@
-package com.dev_stopstone.seen
+package com.dev_stopstone.seenapp
 
 import org.junit.Test
 

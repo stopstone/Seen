@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "com.dev_stopstone.seen"
+    namespace = "com.dev_stopstone.seenapp"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.dev_stopstone.seen"
+        applicationId = "com.dev_stopstone.seenapp"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -49,7 +49,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-auth:22.3.1")
-    implementation("com.google.firebase:firebase-database:20.3.0")
+    implementation("com.google.firebase:firebase-database:20.3.1")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     testImplementation("junit:junit:4.13.2")
@@ -64,6 +64,8 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.android.gms:play-services-auth:21.0.0")
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-storage")
 
     // Network
     implementation("com.github.bumptech.glide:glide:4.16.0")

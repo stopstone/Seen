@@ -1,4 +1,4 @@
-package com.dev_stopstone.seen
+package com.dev_stopstone.seenapp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.dev_stopstone.seen.databinding.FragmentHomeBinding
+import com.dev_stopstone.seenapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(), ItemClickListener {
     private var _binding: FragmentHomeBinding? = null
