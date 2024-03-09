@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "652163618656",
+    "project_id": "seenproject-aebba",
+    "storage_bucket": "seenproject-aebba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652163618656:android:5aedfe62317fceae5e7005",
+        "android_client_info": {
+          "package_name": "com.dev_stopstone.seenapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652163618656-o47emlo3rd54lbgm813mtbnpp717bau3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dev_stopstone.seenapp",
+            "certificate_hash": "d5feae1cba4af6920888a181446c7b3355832e40"
+          }
+        },
+        {
+          "client_id": "652163618656-u82a1fqu60qkahsdcvkacou104t6rje9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAig8_drxdPOv4su4C6s2KQ4scqHfVynwg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "652163618656-u82a1fqu60qkahsdcvkacou104t6rje9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

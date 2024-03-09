@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.core.widget.NestedScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <ImageView
+                android:id="@+id/iv_lost_item_detail_image"
+                android:layout_width="0dp"
+                android:layout_height="320dp"
+                android:contentDescription="@string/description_lost_detail_image"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:background="@color/blue_200" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_detail_state"
+                style="@style/AppTextCaption.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="21dp"
+                android:background="@color/green_600"
+                android:paddingStart="3dp"
+                android:paddingEnd="3dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/iv_lost_item_detail_image"
+                tools:text="찾아요" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_detail_title"
+                style="@style/AppTextTitle.S18.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                app:layout_constraintStart_toEndOf="@id/tv_lost_item_detail_state"
+                app:layout_constraintTop_toBottomOf="@id/iv_lost_item_detail_image"
+                tools:text="마르지엘라 지갑" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_detail_publish_at"
+                style="@style/AppTextLabel.S10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                app:layout_constraintBottom_toTopOf="@id/divider_lost_item_detail"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="2024년 04월 30일" />
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider_lost_item_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:dividerColor="@color/gray_300"
+                app:dividerThickness="1dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_lost_item_detail_title" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_location_label"
+                style="@style/AppTextTitle.S14.Bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/label_lost_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider_lost_item_detail" />
+
+            <!--  지도  -->
+            <View
+                android:id="@+id/view_lost_item_location_map"
+                android:layout_width="0dp"
+                android:layout_height="130dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/blue_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_lost_item_location_label" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_description_label"
+                style="@style/AppTextTitle.S14.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/label_lost_description"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/view_lost_item_location_map" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_lost_item_description_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_lost_item_description_label"
+                tools:text="갤러리아 백화점 근처에서 잃어버렸습니다.\n선물로 받은 거라 꼭 찾고 싶어요 ㅠㅠ\n사례 꼭 하겠습니다!!" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_date_label"
+                style="@style/AppTextTitle.S14.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/label_lost_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_lost_item_description" />
+
+            <TextView
+                android:id="@+id/tv_lost_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintStart_toStartOf="@id/tv_lost_item_date_label"
+                app:layout_constraintTop_toBottomOf="@id/tv_lost_item_date_label"
+                tools:text="2024년 4월 29일" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:id="@+id/view_lost_item_bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_lost_item_bookmark"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
+        android:contentDescription="@string/description_lost_item_bookmark"
+        android:src="@drawable/ic_star"
+        app:layout_constraintBottom_toBottomOf="@id/view_lost_item_bottom_navigation"
+        app:layout_constraintStart_toStartOf="@id/view_lost_item_bottom_navigation"
+        app:layout_constraintTop_toTopOf="@id/view_lost_item_bottom_navigation" />
+
+    <TextView
+        android:id="@+id/tv_lost_item_reward_label"
+        style="@style/AppTextCaption.Grey600"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/label_lost_item_reward"
+        app:layout_constraintStart_toEndOf="@id/iv_lost_item_bookmark"
+        app:layout_constraintTop_toTopOf="@id/iv_lost_item_bookmark" />
+
+    <TextView
+        android:id="@+id/tv_lost_item_reward_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="50,000원"
+        style="@style/AppTextTitle.S16.Bold"
+        app:layout_constraintStart_toStartOf="@id/tv_lost_item_reward_label"
+        app:layout_constraintTop_toBottomOf="@id/tv_lost_item_reward_label" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_lost_item_start_chat"
+        style="@style/AppButtonPrimary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:paddingStart="25dp"
+        android:paddingEnd="25dp"
+        android:text="@string/label_start_talk_button"
+        app:layout_constraintBottom_toBottomOf="@id/view_lost_item_bottom_navigation"
+        app:layout_constraintEnd_toEndOf="@id/view_lost_item_bottom_navigation"
+        app:layout_constraintTop_toTopOf="@id/view_lost_item_bottom_navigation" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

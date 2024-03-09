@@ -10,4 +10,21 @@
     <string name="label_nickname">닉네임</string>
     <string name="hint_profile_nickname_text">닉네임을 입력해요</string>
     <string name="label_profile_complete_button">시작해요</string>
+    <string name="label_home">홈</string>
+    <string name="description_add_lost_item_button">분실물 작성 버튼</string>
+    <string name="description_lost_detail_image">분실물 상세 사진</string>
+    <string name="label_lost_location">분실위치</string>
+    <string name="label_lost_description">설명 글</string>
+    <string name="label_lost_date">분실 날짜</string>
+    <string name="label_start_talk_button">대화해요</string>
+    <string name="description_lost_item_bookmark">즐겨찾기</string>
+    <string name="label_lost_item_reward">사례금</string>
+    <string name="label_lost_item_title">분실물 이름</string>
+    <string name="hint_register_item_title">분실물 등록할 제목을 입력해주세요.</string>
+    <string name="label_description">설명</string>
+    <string name="hint__register_item_description">분실물을 찾을 수 있도록 설명을 남겨주세요.\n자세하게 남기면 좋아요</string>
+    <string name="label_location">분실 장소</string>
+    <string name="hint_find_location">위치 찾기</string>
+    <string name="label_reward_price">₩ 0</string>
+    <string name="label_register_item_button">등록해요</string>
 </resources>

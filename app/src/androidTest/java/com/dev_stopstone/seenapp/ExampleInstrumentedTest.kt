@@ -1,4 +1,4 @@
-package com.stopstone.seen
+package com.dev_stopstone.seenapp
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
