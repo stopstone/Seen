@@ -10,6 +10,7 @@ import com.naver.maps.map.NaverMapSdk
 import com.naver.maps.map.OnMapReadyCallback
 import com.naver.maps.map.overlay.Marker
 
+
 class RegisterLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityRegisterLocationBinding
     private lateinit var mapView: MapView
@@ -23,15 +24,24 @@ class RegisterLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         NaverMapSdk.getInstance(this).client = NaverMapSdk.NaverCloudPlatformClient("lj8zi1w1sr")
         mapView = binding.mapView
         mapView.onCreate(savedInstanceState)
-
         mapView.getMapAsync(this)
+
+
+
         binding.btnRegisterLocationButton.setOnClickListener {
             val cameraPosition = naverMap.cameraPosition
             val centerLatLng = cameraPosition.target
             val latitude = centerLatLng.latitude
             val longitude = centerLatLng.longitude
-            // 좌표 반환
-            println("Center Latitude: $latitude, Longitude: $longitude")
+
+            val key = intent.getStringExtra("key")!!
+
+            val bundle = Bundle()
+            bundle.putDoubleArray("location", doubleArrayOf(latitude, longitude))
+            bundle.putString("key", key)
+            val modalBottomSheet = LocationBottomSheetFragment()
+            modalBottomSheet.arguments = bundle
+            modalBottomSheet.show(supportFragmentManager, LocationBottomSheetFragment.TAG)
         }
     }
 
