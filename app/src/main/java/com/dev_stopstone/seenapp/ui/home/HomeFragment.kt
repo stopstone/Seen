@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.dev_stopstone.seenapp.data.LostItem
-import com.dev_stopstone.seenapp.data.Storage
 import com.dev_stopstone.seenapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(), ItemClickListener {
@@ -24,7 +23,7 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvHomeItemList.adapter = LostItemAdapter(Storage.getDummyData(), this)
+        binding.rvHomeItemList.adapter = LostItemAdapter(this)
         binding.btnAddLostItemButton.setOnClickListener {
             val action =
                 HomeFragmentDirections.actionHomeToRegisterLostItem()
