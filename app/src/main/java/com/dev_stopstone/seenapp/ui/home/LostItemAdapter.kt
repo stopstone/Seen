@@ -9,8 +9,10 @@ import com.bumptech.glide.Glide
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.ItemLostBinding
 
-class LostItemAdapter(private val items: List<LostItem>, private val listener: ItemClickListener) :
+class LostItemAdapter(private val listener: ItemClickListener) :
+
     RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder>() {
+    private val items: List<LostItem> = listOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LostItemViewHolder {
         return LostItemViewHolder.from(parent, listener)
     }
@@ -33,13 +35,13 @@ class LostItemAdapter(private val items: List<LostItem>, private val listener: I
                 listener.onClickLostItem(lostItem)
             }
             with(binding) {
-                val imageUri: Uri = lostItem.itemUrlImage.toUri()
+                val imageUri: Uri = lostItem.itemUrlImage.first()
                 Glide.with(ivLostItemThumbnailImage)
                     .load(imageUri)
                     .centerCrop()
                     .into(ivLostItemThumbnailImage)
                 tvLostItemTitle.text = lostItem.title
-                tvLostItemLocation.text = lostItem.location
+                tvLostItemLocation.text = lostItem.location!!.title
                 tvLostItemPublishedAt.text = lostItem.createAt
             }
         }
