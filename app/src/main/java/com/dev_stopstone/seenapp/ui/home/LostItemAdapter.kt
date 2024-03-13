@@ -35,7 +35,7 @@ class LostItemAdapter(private val listener: ItemClickListener) :
                 listener.onClickLostItem(lostItem)
             }
             with(binding) {
-                val imageUri: Uri = lostItem.itemUrlImage.first()
+                val imageUri: Uri = lostItem.itemUrlImage.first().toUri()
                 Glide.with(ivLostItemThumbnailImage)
                     .load(imageUri)
                     .centerCrop()
