@@ -17,15 +17,16 @@
         app:title="분실물 찾기" />
 
     <!-- 네이버 맵 뷰 -->
-    <com.naver.maps.map.MapView
-        android:id="@+id/map_view"
+    <fragment
+        android:id="@+id/map_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:name="com.naver.maps.map.MapFragment"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_register_location" />
-
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_register_location"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register_location_button"
         style="@style/AppButtonPrimary"

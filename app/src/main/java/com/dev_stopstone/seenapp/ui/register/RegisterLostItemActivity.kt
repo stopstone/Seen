@@ -58,7 +58,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 val lostItem = LostItem(
                     postId = currentUser,
                     title = "${etRegisterItemTitle.text}",
-                    itemUrlImage = imageUri,
+                    itemUrlImage = imageUri.map { it.toString() },
                     description = "${etRegisterItemDescription.text}",
                     location = location,
                     lostDate = etRegisterItemDate.text.toString(),
