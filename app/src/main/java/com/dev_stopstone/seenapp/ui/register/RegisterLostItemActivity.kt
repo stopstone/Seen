@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.widget.EditText
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -36,6 +37,9 @@ class RegisterLostItemActivity : AppCompatActivity() {
         postRef = database.reference.child("post").push()
         postGalleryAdapter = PostGalleryAdapter(imageUri)
         with(binding) {
+            setListenerEnable(etRegisterItemLocation)
+            setListenerEnable(etRegisterItemDate)
+
             ivRegisterItemAddImage.setOnClickListener {
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.type = "image/*"
@@ -44,13 +48,13 @@ class RegisterLostItemActivity : AppCompatActivity() {
             }
             rvRegisterPhotoList.adapter = postGalleryAdapter
 
-            ivRegisterItemLocation.setOnClickListener {
+            etRegisterItemLocation.setOnClickListener {
                 val intent = Intent(applicationContext, RegisterLocationActivity::class.java)
                 intent.putExtra("key", postRef.key.toString())
                 resultLauncher.launch(intent)
             }
 
-            ivRegisterLostDateCalendar.setOnClickListener {
+            etRegisterItemDate.setOnClickListener {
                 showDatePickerDialog()
             }
             btnRegisterCompleteButton.setOnClickListener {
@@ -70,6 +74,12 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun setListenerEnable(editText: EditText) {
+        editText.keyListener = null
+        editText.isFocusable = false
+        editText.isFocusableInTouchMode = false
     }
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
