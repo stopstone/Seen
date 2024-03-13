@@ -1,4 +1,4 @@
-package com.dev_stopstone.seenapp
+package com.dev_stopstone.seenapp.ui.profile
 
 import android.content.Intent
 import android.net.Uri
@@ -8,6 +8,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import com.bumptech.glide.Glide
+import com.dev_stopstone.seenapp.MainActivity
+import com.dev_stopstone.seenapp.data.User
 import com.dev_stopstone.seenapp.databinding.ActivityProfileAddBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase

@@ -1,4 +1,4 @@
-package com.dev_stopstone.seenapp
+package com.dev_stopstone.seenapp.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment(), ItemClickListener {
@@ -22,9 +23,10 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvHomeItemList.adapter = LostItemAdapter(Storage.getDummyData(), this)
+        binding.rvHomeItemList.adapter = LostItemAdapter(this)
         binding.btnAddLostItemButton.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeToRegisterLostItem()
+            val action =
+                HomeFragmentDirections.actionHomeToRegisterLostItem()
             findNavController().navigate(action)
         }
     }
@@ -35,7 +37,8 @@ class HomeFragment : Fragment(), ItemClickListener {
     }
 
     override fun onClickLostItem(lostItem: LostItem) {
-        val action = HomeFragmentDirections.actionHomeToLostDetail(lostItem)
+        val action =
+            HomeFragmentDirections.actionHomeToLostDetail(lostItem)
         findNavController().navigate(action)
     }
 }

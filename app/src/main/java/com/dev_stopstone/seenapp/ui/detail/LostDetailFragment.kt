@@ -1,10 +1,9 @@
-package com.dev_stopstone.seenapp
+package com.dev_stopstone.seenapp.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -27,7 +26,7 @@ class LostDetailFragment : Fragment() {
         with(binding) {
             val lostItem = args.lostItem
             Glide.with(this@LostDetailFragment)
-                .load(lostItem.itemUrlImage.toUri())
+                .load(lostItem.itemUrlImage)
                 .into(ivLostItemDetailImage)
             tvLostItemDetailState.text = "찾는 중"
             tvLostItemDetailTitle.text = lostItem.title
