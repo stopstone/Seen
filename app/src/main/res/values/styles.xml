@@ -12,12 +12,12 @@
 
     <style name="AppButtonOnPrimary">
         <item name="android:background">@drawable/selector_background_profile_button</item>
-        <item name="android:textAppearance">@style/AppTextLabel.S16</item>
+        <item name="android:textAppearance">@style/AppTextOnPrimary</item>
     </style>
 
-    <style name="AppButtonPrimary">
-        <item name="android:background">@drawable/background_blue_500</item>
-        <item name="android:textAppearance">@style/AppTextCaption.S16.Bold</item>
+    <style name="AppButtonPrimary" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textAppearance">@style/AppTextOnPrimary.S16.Bold</item>
+        <item name="android:background">@drawable/selector_background_button</item>
     </style>
 
     <style name="AppRoundedImageLarge">
@@ -102,4 +102,16 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <style name="AppTextOnPrimary">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AppTextOnPrimary.S16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="AppTextOnPrimary.S16.Bold">
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

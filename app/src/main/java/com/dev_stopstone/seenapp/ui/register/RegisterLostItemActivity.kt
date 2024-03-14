@@ -10,6 +10,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import com.dev_stopstone.seenapp.data.Location
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.ActivityRegisterLostItemBinding
@@ -30,12 +31,41 @@ class RegisterLostItemActivity : AppCompatActivity() {
     private val database = Firebase.database
     private lateinit var postRef: DatabaseReference
 
+    private var isText = false
+    private var isLocation = false
+    private var isDate = false
+    private var isReward = false
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         postRef = database.reference.child("post").push()
         postGalleryAdapter = PostGalleryAdapter(imageUri)
+
+        with(binding) {
+            etRegisterItemTitle.addTextChangedListener {
+                val itemTitle = it ?: ""
+                isText = isValidText(itemTitle)
+                updateButtonEnableState()
+            }
+            etRegisterItemLocation.addTextChangedListener {
+                val itemLocation = it ?: ""
+                isLocation = isValidText(itemLocation)
+                updateButtonEnableState()
+            }
+            etRegisterItemDate.addTextChangedListener {
+                val itemDate = it ?: ""
+                isDate = isValidText(itemDate)
+                updateButtonEnableState()
+            }
+            etRegisterItemRewardPrice.addTextChangedListener {
+                val itemReward = it ?: ""
+                isReward = isValidText(itemReward)
+                updateButtonEnableState()
+            }
+        }
+
         with(binding) {
             setListenerEnable(etRegisterItemLocation)
             setListenerEnable(etRegisterItemDate)
@@ -76,6 +106,13 @@ class RegisterLostItemActivity : AppCompatActivity() {
         }
     }
 
+    private fun isValidText(text: CharSequence) = text.isNotEmpty()
+
+    private fun updateButtonEnableState() {
+        binding.btnRegisterCompleteButton.isEnabled =
+            isText && isLocation && isDate && isReward
+    }
+
     private fun setListenerEnable(editText: EditText) {
         editText.keyListener = null
         editText.isFocusable = false
@@ -104,9 +141,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
             if (it.data!!.clipData != null) {
                 val count = it.data!!.clipData!!.itemCount
                 for (index in 0 until count) {
-                    //이미지 담기
                     val imageUri = it.data!!.clipData!!.getItemAt(index).uri
-                    //이미지 추가
                     this.imageUri.add(imageUri)
                 }
             } else { //싱글 이미지
