@@ -17,13 +17,16 @@
         app:title="분실물 찾기" />
 
     <!-- 네이버 맵 뷰 -->
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map_fragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:name="com.naver.maps.map.MapFragment"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:navermap_latitude="37.555078"
+        app:navermap_longitude="126.970702"
+        app:navermap_zoom="17.0"
         app:layout_constraintTop_toBottomOf="@id/toolbar_register_location"
         app:layout_constraintBottom_toBottomOf="parent"
         />
