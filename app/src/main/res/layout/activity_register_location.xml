@@ -17,24 +17,25 @@
         app:title="분실물 찾기" />
 
     <!-- 네이버 맵 뷰 -->
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/map_fragment"
+        android:name="com.naver.maps.map.MapFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:name="com.naver.maps.map.MapFragment"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_register_location"
         app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_register_location"
+        app:navermap_zoom="17.0" />
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register_location_button"
         style="@style/AppButtonPrimary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="35dp"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="35dp"
         android:text="@string/label_register_location_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

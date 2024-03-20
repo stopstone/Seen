@@ -9,10 +9,11 @@ import com.bumptech.glide.Glide
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.ItemLostBinding
 
-class LostItemAdapter(private val listener: ItemClickListener) :
-
+class LostItemAdapter(
+    private val items: MutableList<LostItem>,
+    private val listener: ItemClickListener
+) :
     RecyclerView.Adapter<LostItemAdapter.LostItemViewHolder>() {
-    private val items: List<LostItem> = listOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LostItemViewHolder {
         return LostItemViewHolder.from(parent, listener)
     }
