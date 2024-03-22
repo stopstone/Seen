@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -92,7 +93,6 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 val lostItem = LostItem(
                     postId = currentUser,
                     title = "${etRegisterItemTitle.text}",
-                    itemUrlImage = imageUri.map { it.toString() },
                     description = "${etRegisterItemDescription.text}",
                     location = location,
                     lostDate = etRegisterItemDate.text.toString(),
@@ -100,9 +100,24 @@ class RegisterLostItemActivity : AppCompatActivity() {
                     rewardPrice = "${etRegisterItemRewardPrice.text}"
                 )
                 postRef.setValue(lostItem).addOnSuccessListener {
-                    finish()
+                    for (count in 0 until imageUri.size) {
+                        imageUpload(count)
+                    }
                 }
             }
+        }
+    }
+
+    private fun imageUpload(count: Int) {
+        val storage = Firebase.storage
+        val storageRef = storage.getReference("${postRef.key}")
+        val fileName = "${storageRef}_${count}"
+
+        val mountainsRef = storageRef.child("${fileName}.png")
+        val uploadTask = mountainsRef.putFile(imageUri[count])
+
+        uploadTask.addOnSuccessListener {
+            finish()
         }
     }
 

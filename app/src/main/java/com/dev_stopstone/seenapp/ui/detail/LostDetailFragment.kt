@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.dev_stopstone.seenapp.databinding.FragmentLostDetailBinding
 
 class LostDetailFragment : Fragment() {
@@ -25,9 +24,7 @@ class LostDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             val lostItem = args.lostItem
-            Glide.with(this@LostDetailFragment)
-                .load(lostItem.itemUrlImage)
-                .into(ivLostItemDetailImage)
+
             tvLostItemDetailState.text = "찾는 중"
             tvLostItemDetailTitle.text = lostItem.title
             tvLostItemDetailPublishAt.text = lostItem.createAt
