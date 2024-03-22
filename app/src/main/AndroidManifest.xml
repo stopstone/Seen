@@ -22,6 +22,15 @@
         android:theme="@style/Theme.Seen"
         tools:targetApi="31">
         <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.register.RegisterLocationActivity"
             android:exported="false" />
         <activity
@@ -29,13 +38,9 @@
             android:exported="false" />
         <activity
             android:name=".ui.profile.LoginActivity"
-            android:exported="true"
+            android:exported="false"
             android:theme="@style/AppTheme.Splash">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.profile.ProfileAddActivity"
@@ -49,6 +54,7 @@
             android:value="lj8zi1w1sr" />
         <meta-data
             android:name="com.naver.maps.map.CLINET_SECRET"
-            android:value="yqKIrCDuxgrZaj1hKCoRlMqhOm2W2A4m3GMJYXFM"/>
+            android:value="yqKIrCDuxgrZaj1hKCoRlMqhOm2W2A4m3GMJYXFM" />
     </application>
+
 </manifest>
