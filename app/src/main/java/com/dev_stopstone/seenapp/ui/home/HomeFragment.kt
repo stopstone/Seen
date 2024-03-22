@@ -46,7 +46,7 @@ class HomeFragment : Fragment(), ItemClickListener {
                     items.clear()
                     for (data in dataSnapshot.children) {
                         val item = data.getValue(LostItem::class.java)
-                        item!!.imageUrls.addAll(getFileUris(listRef))
+                        item!!.imageUrls.addAll(getFileUris(listRef, item.postId))
                         items.add(item)
                     }
                     adapter.notifyDataSetChanged()
@@ -91,13 +91,15 @@ class HomeFragment : Fragment(), ItemClickListener {
     }
 }
 
-suspend fun getFileUris(listRef: StorageReference): List<Uri> = withContext(Dispatchers.IO) {
+suspend fun getFileUris(listRef: StorageReference, postId: String): List<Uri> = withContext(Dispatchers.IO) {
     val listResult = listRef.listAll().await()
     val urlList = mutableListOf<Uri>()
 
     for (item in listResult.items) {
-        val uri = item.downloadUrl.await()
-        urlList.add(uri)
+        if (item.name.contains(postId)) {
+            val uri = item.downloadUrl.await()
+            urlList.add(uri)
+        }
     }
 
     urlList
