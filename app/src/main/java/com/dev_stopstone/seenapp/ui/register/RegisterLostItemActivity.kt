@@ -14,7 +14,6 @@ import androidx.core.widget.addTextChangedListener
 import com.dev_stopstone.seenapp.data.Location
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.ActivityRegisterLostItemBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -89,9 +88,8 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 showDatePickerDialog()
             }
             btnRegisterCompleteButton.setOnClickListener {
-                val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
                 val lostItem = LostItem(
-                    postId = currentUser,
+                    postId = "${postRef.key}",
                     title = "${etRegisterItemTitle.text}",
                     description = "${etRegisterItemDescription.text}",
                     location = location,
@@ -111,7 +109,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
 
     private fun imageUpload(count: Int) {
         val storage = Firebase.storage
-        val storageRef = storage.getReference("${postRef.key}")
+        val storageRef = storage.getReference("postImages")
         val fileName = "${postRef.key}_${count}"
 
         val mountainsRef = storageRef.child("${fileName}.png")
