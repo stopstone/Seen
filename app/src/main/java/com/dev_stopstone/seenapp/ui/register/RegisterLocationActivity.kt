@@ -73,10 +73,12 @@ class RegisterLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         } else {
             val locationProviderClient = LocationServices.getFusedLocationProviderClient(this)
             locationProviderClient.lastLocation.addOnSuccessListener { location ->
-                val currentLatLng = LatLng(location.latitude, location.longitude)
-                naverMap.moveCamera(CameraUpdate.scrollTo(currentLatLng))
-                marker.position = currentLatLng
-                marker.map = naverMap
+                if (location != null) {
+                    val currentLatLng = LatLng(location.latitude, location.longitude)
+                    naverMap.moveCamera(CameraUpdate.scrollTo(currentLatLng))
+                    marker.position = currentLatLng
+                    marker.map = naverMap
+                }
             }
         }
 

@@ -99,6 +99,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
                     createAt = getCurrentDate(),
                     rewardPrice = "${etRegisterItemRewardPrice.text}"
                 )
+
                 postRef.setValue(lostItem).addOnSuccessListener {
                     for (count in 0 until imageUri.size) {
                         imageUpload(count)
@@ -111,7 +112,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
     private fun imageUpload(count: Int) {
         val storage = Firebase.storage
         val storageRef = storage.getReference("${postRef.key}")
-        val fileName = "${storageRef}_${count}"
+        val fileName = "${postRef.key}_${count}"
 
         val mountainsRef = storageRef.child("${fileName}.png")
         val uploadTask = mountainsRef.putFile(imageUri[count])
