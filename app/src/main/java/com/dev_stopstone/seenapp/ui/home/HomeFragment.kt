@@ -21,7 +21,7 @@ class HomeFragment : Fragment(), ItemClickListener {
     private val binding get() = _binding!!
     private lateinit var database : FirebaseDatabase
     private val items = mutableListOf<LostItem>()
-
+    private val adapter = LostItemAdapter(items, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +31,12 @@ class HomeFragment : Fragment(), ItemClickListener {
 
         postRef.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                items.clear()
                 for (data in dataSnapshot.children) {
                     val item = data.getValue(LostItem::class.java)
                     items.add(item!!)
                 }
-                binding.rvHomeItemList.adapter = LostItemAdapter(items, this@HomeFragment)
-
+                adapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -56,6 +56,9 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.rvHomeItemList.adapter = adapter
+
         binding.btnAddLostItemButton.setOnClickListener {
             val action =
                 HomeFragmentDirections.actionHomeToRegisterLostItem()
