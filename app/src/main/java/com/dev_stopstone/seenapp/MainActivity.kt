@@ -2,6 +2,7 @@ package com.dev_stopstone.seenapp
 
 import android.os.Build
 import android.os.Bundle
+import android.view.View.GONE
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -22,11 +23,11 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNavigationHome.setupWithNavController(navController)
 
-//        navController.addOnDestinationChangedListener { _, destination, _ ->
-//            when (destination.id) {
-//                R.id.navigation_lost_detail ->
-//                    binding.bottomNavigationHome.visibility = GONE
-//            }
-//        }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when (destination.id) {
+                R.id.navigation_lost_detail ->
+                    binding.bottomNavigationHome.visibility = GONE
+            }
+        }
     }
 }
