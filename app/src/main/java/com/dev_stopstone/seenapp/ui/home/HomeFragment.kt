@@ -40,7 +40,7 @@ class HomeFragment : Fragment(), ItemClickListener {
         database = Firebase.database
         val postRef = database.getReference("post")
 
-        postRef.addValueEventListener(object : ValueEventListener {
+        postRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 lifecycleScope.launch {
                     items.clear()
