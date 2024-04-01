@@ -1,18 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            app:menu="@menu/top_app_bar"
+            app:navigationIcon="@drawable/ic_arrow_back" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.core.widget.NestedScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_marginBottom="120dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
+
             <ImageView
                 android:id="@+id/iv_lost_item_detail_image"
                 android:layout_width="0dp"
@@ -136,58 +154,65 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <View
-        android:id="@+id/view_lost_item_bottom_navigation"
-        android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
 
-    <ImageView
-        android:id="@+id/iv_lost_item_bookmark"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_margin="20dp"
-        android:contentDescription="@string/description_lost_item_bookmark"
-        android:src="@drawable/ic_star"
-        app:layout_constraintBottom_toBottomOf="@id/view_lost_item_bottom_navigation"
-        app:layout_constraintStart_toStartOf="@id/view_lost_item_bottom_navigation"
-        app:layout_constraintTop_toTopOf="@id/view_lost_item_bottom_navigation" />
+        <View
+            android:id="@+id/view_lost_item_bottom_navigation"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_lost_item_reward_label"
-        style="@style/AppTextCaption.Grey600"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
-        android:text="@string/label_lost_item_reward"
-        app:layout_constraintStart_toEndOf="@id/iv_lost_item_bookmark"
-        app:layout_constraintTop_toTopOf="@id/iv_lost_item_bookmark" />
+        <ImageView
+            android:id="@+id/iv_lost_item_bookmark"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="20dp"
+            android:contentDescription="@string/description_lost_item_bookmark"
+            android:src="@drawable/ic_star"
+            app:layout_constraintBottom_toBottomOf="@id/view_lost_item_bottom_navigation"
+            app:layout_constraintStart_toStartOf="@id/view_lost_item_bottom_navigation"
+            app:layout_constraintTop_toTopOf="@id/view_lost_item_bottom_navigation" />
 
-    <TextView
-        android:id="@+id/tv_lost_item_reward_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="50,000원"
-        style="@style/AppTextTitle.S16.Bold"
-        app:layout_constraintStart_toStartOf="@id/tv_lost_item_reward_label"
-        app:layout_constraintTop_toBottomOf="@id/tv_lost_item_reward_label" />
+        <TextView
+            android:id="@+id/tv_lost_item_reward_label"
+            style="@style/AppTextCaption.Grey600"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/label_lost_item_reward"
+            app:layout_constraintStart_toEndOf="@id/iv_lost_item_bookmark"
+            app:layout_constraintTop_toTopOf="@id/iv_lost_item_bookmark" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_lost_item_start_chat"
-        android:elevation="5dp"
-        style="@style/AppButtonPrimary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:paddingStart="25dp"
-        android:paddingEnd="25dp"
-        android:text="@string/label_start_talk_button"
-        app:layout_constraintBottom_toBottomOf="@id/view_lost_item_bottom_navigation"
-        app:layout_constraintEnd_toEndOf="@id/view_lost_item_bottom_navigation"
-        app:layout_constraintTop_toTopOf="@id/view_lost_item_bottom_navigation" />
+        <TextView
+            android:id="@+id/tv_lost_item_reward_price"
+            style="@style/AppTextTitle.S16.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/tv_lost_item_reward_label"
+            app:layout_constraintTop_toBottomOf="@id/tv_lost_item_reward_label"
+            tools:text="50,000원" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_lost_item_start_chat"
+            style="@style/AppButtonPrimary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:elevation="5dp"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:text="@string/label_start_talk_button"
+            app:layout_constraintBottom_toBottomOf="@id/view_lost_item_bottom_navigation"
+            app:layout_constraintEnd_toEndOf="@id/view_lost_item_bottom_navigation"
+            app:layout_constraintTop_toTopOf="@id/view_lost_item_bottom_navigation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
