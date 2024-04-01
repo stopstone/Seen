@@ -3,6 +3,7 @@ package com.dev_stopstone.seenapp
 import android.os.Build
 import android.os.Bundle
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -27,6 +28,8 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.navigation_lost_detail ->
                     binding.bottomNavigationHome.visibility = GONE
+                else ->
+                    binding.bottomNavigationHome.visibility = VISIBLE
             }
         }
     }
