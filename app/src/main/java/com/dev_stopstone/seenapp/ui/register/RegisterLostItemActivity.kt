@@ -14,10 +14,10 @@ import androidx.core.widget.addTextChangedListener
 import com.dev_stopstone.seenapp.data.Location
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.ActivityRegisterLostItemBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -88,21 +88,35 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 showDatePickerDialog()
             }
             btnRegisterCompleteButton.setOnClickListener {
-                val currentUser = FirebaseAuth.getInstance().currentUser!!.uid
                 val lostItem = LostItem(
-                    postId = currentUser,
+                    postId = "${postRef.key}",
                     title = "${etRegisterItemTitle.text}",
-                    itemUrlImage = imageUri.map { it.toString() },
                     description = "${etRegisterItemDescription.text}",
                     location = location,
                     lostDate = etRegisterItemDate.text.toString(),
                     createAt = getCurrentDate(),
                     rewardPrice = "${etRegisterItemRewardPrice.text}"
                 )
+
                 postRef.setValue(lostItem).addOnSuccessListener {
-                    finish()
+                    for (count in 0 until imageUri.size) {
+                        imageUpload(count)
+                    }
                 }
             }
+        }
+    }
+
+    private fun imageUpload(count: Int) {
+        val storage = Firebase.storage
+        val storageRef = storage.getReference("postImages")
+        val fileName = "${postRef.key}_${count}"
+
+        val mountainsRef = storageRef.child("${fileName}.png")
+        val uploadTask = mountainsRef.putFile(imageUri[count])
+
+        uploadTask.addOnSuccessListener {
+            finish()
         }
     }
 

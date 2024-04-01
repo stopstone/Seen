@@ -8,8 +8,7 @@
     <androidx.core.widget.NestedScrollView
         android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="100dp">
+        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -82,16 +81,14 @@
                 android:text="@string/label_lost_location"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/divider_lost_item_detail" />
-
             <!--  지도  -->
-            <View
-                android:id="@+id/view_lost_item_location_map"
+            <com.naver.maps.map.MapView
+                android:id="@+id/map_view"
                 android:layout_width="0dp"
                 android:layout_height="130dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="7dp"
                 android:layout_marginEnd="16dp"
-                android:background="@color/blue_500"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_lost_item_location_label" />
@@ -104,7 +101,7 @@
                 android:layout_margin="16dp"
                 android:text="@string/label_lost_description"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/view_lost_item_location_map" />
+                app:layout_constraintTop_toBottomOf="@id/map_view" />
 
             <TextView
                 android:id="@+id/tv_lost_item_description"
@@ -181,6 +178,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_lost_item_start_chat"
+        android:elevation="5dp"
         style="@style/AppButtonPrimary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
