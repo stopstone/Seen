@@ -1,28 +1,23 @@
 package com.dev_stopstone.seenapp.ui.home
 
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.FragmentHomeBinding
+import com.dev_stopstone.seenapp.ui.register.LocationBottomSheetFragment.Companion.TAG
 import com.google.firebase.Firebase
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
+import com.google.firebase.database.getValue
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
 
 
 class HomeFragment : Fragment(), ItemClickListener {
@@ -34,27 +29,25 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        database = Firebase.database
 
         val storage = FirebaseStorage.getInstance()
         val listRef = storage.reference.child("postImages")
-        database = Firebase.database
         val postRef = database.getReference("post")
 
-        postRef.addListenerForSingleValueEvent(object : ValueEventListener {
+
+        postRef.addValueEventListener( object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                lifecycleScope.launch {
-                    items.clear()
-                    for (data in dataSnapshot.children) {
-                        val item = data.getValue(LostItem::class.java)
-                        item!!.imageUrls.addAll(getFileUris(listRef, item.postId))
-                        items.add(item)
-                    }
-                    adapter.notifyDataSetChanged()
+                for (dataModel in dataSnapshot.children) {
+                    val item = dataModel.getValue(LostItem::class.java)
+                    items.add(item!!)
+                    Log.d("", items.toString())
                 }
             }
 
-            override fun onCancelled(error: DatabaseError) {
-                Log.w("TAG", "Failed to read value.", error.toException())
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
             }
         })
     }
@@ -89,18 +82,4 @@ class HomeFragment : Fragment(), ItemClickListener {
             HomeFragmentDirections.actionHomeToLostDetail(lostItem)
         findNavController().navigate(action)
     }
-}
-
-suspend fun getFileUris(listRef: StorageReference, postId: String): List<Uri> = withContext(Dispatchers.IO) {
-    val listResult = listRef.listAll().await()
-    val urlList = mutableListOf<Uri>()
-
-    for (item in listResult.items) {
-        if (item.name.contains(postId)) {
-            val uri = item.downloadUrl.await()
-            urlList.add(uri)
-        }
-    }
-
-    urlList
 }

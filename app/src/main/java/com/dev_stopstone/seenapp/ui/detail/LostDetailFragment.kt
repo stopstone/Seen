@@ -40,8 +40,6 @@ class LostDetailFragment : Fragment(), OnMapReadyCallback {
             val lostItem = args.lostItem
 
             Glide.with(this@LostDetailFragment)
-                .load(lostItem.imageUrls.first())
-                .into(ivLostItemDetailImage)
 
             tvLostItemDetailState.text = "찾는 중"
             tvLostItemDetailTitle.text = lostItem.title

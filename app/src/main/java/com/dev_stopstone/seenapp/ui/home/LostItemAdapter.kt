@@ -35,13 +35,6 @@ class LostItemAdapter(
                 listener.onClickLostItem(lostItem)
             }
             with(binding) {
-                Glide.with(itemView)
-                    .load(lostItem.imageUrls.first())
-                    .placeholder(R.color.black)
-                    .centerCrop()
-                    .into(ivLostItemThumbnailImage)
-
-
                 tvLostItemTitle.text = lostItem.title
                 tvLostItemLocation.text = lostItem.location!!.title
                 tvLostItemPublishedAt.text = lostItem.createAt
