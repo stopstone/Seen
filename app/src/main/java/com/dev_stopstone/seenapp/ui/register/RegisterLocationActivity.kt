@@ -65,6 +65,7 @@ class RegisterLocationActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(naverMap: NaverMap) {
         this.naverMap = naverMap
         naverMap.locationSource = locationSource
+        naverMap.locationTrackingMode = LocationTrackingMode.Follow
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
@@ -77,7 +78,6 @@ class RegisterLocationActivity : AppCompatActivity(), OnMapReadyCallback {
                     val currentLatLng = LatLng(location.latitude, location.longitude)
                     naverMap.moveCamera(CameraUpdate.scrollTo(currentLatLng))
                     marker.position = currentLatLng
-                    marker.map = naverMap
                 }
             }
         }
@@ -85,6 +85,7 @@ class RegisterLocationActivity : AppCompatActivity(), OnMapReadyCallback {
         naverMap.addOnCameraChangeListener { _, _ ->
             val cameraLatLng = naverMap.cameraPosition.target
             marker.position = cameraLatLng
+            marker.map = naverMap
         }
     }
 
