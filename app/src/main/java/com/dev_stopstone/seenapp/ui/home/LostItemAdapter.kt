@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dev_stopstone.seenapp.R
 import com.dev_stopstone.seenapp.data.LostItem
 import com.dev_stopstone.seenapp.databinding.ItemLostBinding
 
@@ -35,6 +34,9 @@ class LostItemAdapter(
                 listener.onClickLostItem(lostItem)
             }
             with(binding) {
+                Glide.with(itemView)
+                    .load(lostItem.imageUris.first())
+                    .into(ivLostItemThumbnailImage)
                 tvLostItemTitle.text = lostItem.title
                 tvLostItemLocation.text = lostItem.location!!.title
                 tvLostItemPublishedAt.text = lostItem.createAt

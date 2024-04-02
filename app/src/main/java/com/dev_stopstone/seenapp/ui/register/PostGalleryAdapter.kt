@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.dev_stopstone.seenapp.databinding.ItemRegisterPhotoBinding
 
 class PostGalleryAdapter(
-    private val items: ArrayList<Uri>,
+    private val items: MutableList<String>,
 ) : RecyclerView.Adapter<PostGalleryAdapter.PostGalleryViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostGalleryViewHolder {
         return PostGalleryViewHolder.from(parent)
@@ -24,7 +24,7 @@ class PostGalleryAdapter(
 
     class PostGalleryViewHolder(private val binding: ItemRegisterPhotoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(imageView: Uri) {
+        fun bind(imageView: String) {
             Glide.with(binding.root)
                 .load(imageView)
                 .into(binding.ivRegisterPhoto)

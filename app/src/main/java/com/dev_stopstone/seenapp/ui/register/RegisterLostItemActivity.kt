@@ -5,11 +5,13 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.net.toUri
 import androidx.core.widget.addTextChangedListener
 import com.dev_stopstone.seenapp.data.Location
 import com.dev_stopstone.seenapp.data.LostItem
@@ -26,7 +28,7 @@ import java.util.Locale
 class RegisterLostItemActivity : AppCompatActivity() {
     private val binding by lazy { ActivityRegisterLostItemBinding.inflate(layoutInflater) }
     private lateinit var postGalleryAdapter: PostGalleryAdapter
-    private var imageUri: ArrayList<Uri> = ArrayList()
+    private var imageUri: MutableList<String> = mutableListOf()
     private lateinit var location: Location
     private val database = Firebase.database
     private lateinit var postRef: DatabaseReference
@@ -43,28 +45,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
         postRef = database.reference.child("post").push()
         postGalleryAdapter = PostGalleryAdapter(imageUri)
 
-        with(binding) {
-            etRegisterItemTitle.addTextChangedListener {
-                val itemTitle = it ?: ""
-                isText = isValidText(itemTitle)
-                updateButtonEnableState()
-            }
-            etRegisterItemLocation.addTextChangedListener {
-                val itemLocation = it ?: ""
-                isLocation = isValidText(itemLocation)
-                updateButtonEnableState()
-            }
-            etRegisterItemDate.addTextChangedListener {
-                val itemDate = it ?: ""
-                isDate = isValidText(itemDate)
-                updateButtonEnableState()
-            }
-            etRegisterItemRewardPrice.addTextChangedListener {
-                val itemReward = it ?: ""
-                isReward = isValidText(itemReward)
-                updateButtonEnableState()
-            }
-        }
+        setValidListener()
 
         with(binding) {
             setListenerEnable(etRegisterItemLocation)
@@ -88,9 +69,11 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 showDatePickerDialog()
             }
             btnRegisterCompleteButton.setOnClickListener {
+                Log.d("RegisterLostItemActivity", imageUri.toString())
                 val lostItem = LostItem(
                     postId = "${postRef.key}",
                     title = "${etRegisterItemTitle.text}",
+                    imageUris = imageUri,
                     description = "${etRegisterItemDescription.text}",
                     location = location,
                     lostDate = etRegisterItemDate.text.toString(),
@@ -98,26 +81,49 @@ class RegisterLostItemActivity : AppCompatActivity() {
                     rewardPrice = "${etRegisterItemRewardPrice.text}"
                 )
 
-                postRef.setValue(lostItem).addOnSuccessListener {
-                    for (count in 0 until imageUri.size) {
-                        imageUpload(count)
-                    }
+                for (count in 0 until imageUri.size) {
+                    imageUpload(count, lostItem.postId)
+                }
+
+                postRef.setValue(lostItem).addOnCompleteListener {
+                    finish()
                 }
             }
         }
     }
 
-    private fun imageUpload(count: Int) {
+    private fun setValidListener() {
+        with(binding) {
+            etRegisterItemTitle.addTextChangedListener {
+                val itemTitle = it ?: ""
+                isText = isValidText(itemTitle)
+                updateButtonEnableState()
+            }
+            etRegisterItemLocation.addTextChangedListener {
+                val itemLocation = it ?: ""
+                isLocation = isValidText(itemLocation)
+                updateButtonEnableState()
+            }
+            etRegisterItemDate.addTextChangedListener {
+                val itemDate = it ?: ""
+                isDate = isValidText(itemDate)
+                updateButtonEnableState()
+            }
+            etRegisterItemRewardPrice.addTextChangedListener {
+                val itemReward = it ?: ""
+                isReward = isValidText(itemReward)
+                updateButtonEnableState()
+            }
+        }
+    }
+
+    private fun imageUpload(count: Int, postId: String) {
         val storage = Firebase.storage
-        val storageRef = storage.getReference("postImages")
+        val storageRef = storage.getReference("postImages").child(postId)
         val fileName = "${postRef.key}_${count}"
 
-        val mountainsRef = storageRef.child("${fileName}.png")
-        val uploadTask = mountainsRef.putFile(imageUri[count])
-
-        uploadTask.addOnSuccessListener {
-            finish()
-        }
+        val imageRef = storageRef.child("${fileName}.png")
+        imageRef.putFile(imageUri[count].toUri())
     }
 
     private fun isValidText(text: CharSequence) = text.isNotEmpty()
@@ -155,19 +161,19 @@ class RegisterLostItemActivity : AppCompatActivity() {
             if (it.data!!.clipData != null) {
                 val count = it.data!!.clipData!!.itemCount
                 for (index in 0 until count) {
-                    val imageUri = it.data!!.clipData!!.getItemAt(index).uri
-                    this.imageUri.add(imageUri)
+                    val uri = it.data!!.clipData!!.getItemAt(index).uri
+                    imageUri.add("$uri")
                 }
             } else { //싱글 이미지
-                val imageUri = it.data!!.data
-                this.imageUri.add(imageUri!!)
+                val uri = it.data!!.data
+                imageUri.add("$uri")
             }
             postGalleryAdapter.notifyDataSetChanged()
         }
     }
 
     private fun getCurrentDate(): String {
-        val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("yyyy.MM.dd hh:mm:ss", Locale.KOREA)
         val currentDate = Date()
         return dateFormat.format(currentDate)
     }
