@@ -59,6 +59,8 @@ dependencies {
     // Splash
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    // Swipe
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     // Firebase
     implementation(platform("com.google.firebase:firebase-bom:32.7.2"))

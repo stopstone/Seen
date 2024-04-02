@@ -16,40 +16,22 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
-import com.google.firebase.database.getValue
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.storage
 
 
 class HomeFragment : Fragment(), ItemClickListener {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var database: FirebaseDatabase
+    private lateinit var storage: FirebaseStorage
     private val items = mutableListOf<LostItem>()
     private val adapter = LostItemAdapter(items, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         database = Firebase.database
-
-        val storage = FirebaseStorage.getInstance()
-        val listRef = storage.reference.child("postImages")
-        val postRef = database.getReference("post")
-
-
-        postRef.addValueEventListener( object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (dataModel in dataSnapshot.children) {
-                    val item = dataModel.getValue(LostItem::class.java)
-                    items.add(item!!)
-                    Log.d("", items.toString())
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
-            }
-        })
+        storage = Firebase.storage
     }
 
     override fun onCreateView(
@@ -63,13 +45,21 @@ class HomeFragment : Fragment(), ItemClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.rvHomeItemList.adapter = adapter
+        binding.refreshLayout.setOnRefreshListener {
+            loadPostData()
+            binding.refreshLayout.isRefreshing = false
+        }
 
         binding.btnAddLostItemButton.setOnClickListener {
             val action =
                 HomeFragmentDirections.actionHomeToRegisterLostItem()
             findNavController().navigate(action)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadPostData()
     }
 
     override fun onDestroyView() {
@@ -81,5 +71,25 @@ class HomeFragment : Fragment(), ItemClickListener {
         val action =
             HomeFragmentDirections.actionHomeToLostDetail(lostItem)
         findNavController().navigate(action)
+    }
+
+    private fun loadPostData() {
+        val postRef = database.getReference("post")
+        postRef.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                items.clear()
+                for (postValue in dataSnapshot.children) {
+                    val item = postValue.getValue(LostItem::class.java)
+                    items.add(item!!)
+                }
+                items.reverse()
+                binding.rvHomeItemList.adapter = adapter
+                adapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        })
     }
 }
