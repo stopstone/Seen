@@ -2,10 +2,8 @@ package com.dev_stopstone.seenapp.ui.register
 
 import android.app.DatePickerDialog
 import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -69,27 +67,29 @@ class RegisterLostItemActivity : AppCompatActivity() {
                 showDatePickerDialog()
             }
             btnRegisterCompleteButton.setOnClickListener {
-                Log.d("RegisterLostItemActivity", imageUri.toString())
                 val lostItem = LostItem(
                     postId = "${postRef.key}",
                     title = "${etRegisterItemTitle.text}",
-                    imageUris = imageUri,
+                    imageUris = getAllImageList("${postRef.key}"),
                     description = "${etRegisterItemDescription.text}",
                     location = location,
                     lostDate = etRegisterItemDate.text.toString(),
                     createAt = getCurrentDate(),
                     rewardPrice = "${etRegisterItemRewardPrice.text}"
                 )
-
-                for (count in 0 until imageUri.size) {
-                    imageUpload(count, lostItem.postId)
-                }
-
                 postRef.setValue(lostItem).addOnCompleteListener {
                     finish()
                 }
             }
         }
+    }
+
+    private fun getAllImageList(postId: String): MutableList<String> {
+        val images = mutableListOf<String>()
+        for (count in 0 until imageUri.size) {
+            images.add(imageUpload(count, postId))
+        }
+        return images
     }
 
     private fun setValidListener() {
@@ -117,13 +117,14 @@ class RegisterLostItemActivity : AppCompatActivity() {
         }
     }
 
-    private fun imageUpload(count: Int, postId: String) {
+    private fun imageUpload(count: Int, postId: String): String {
         val storage = Firebase.storage
         val storageRef = storage.getReference("postImages").child(postId)
         val fileName = "${postRef.key}_${count}"
 
         val imageRef = storageRef.child("${fileName}.png")
         imageRef.putFile(imageUri[count].toUri())
+        return imageRef.toString()
     }
 
     private fun isValidText(text: CharSequence) = text.isNotEmpty()
