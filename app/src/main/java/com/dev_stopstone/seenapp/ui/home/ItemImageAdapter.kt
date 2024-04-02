@@ -1,25 +1,50 @@
 package com.dev_stopstone.seenapp.ui.home
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.dev_stopstone.seenapp.databinding.ItemLostBinding
+import com.bumptech.glide.Glide
+import com.dev_stopstone.seenapp.databinding.ItemDetailImageBinding
+import com.google.firebase.storage.FirebaseStorage
 
-class ItemImageAdapter(private val items : MutableList<String>) :
+class ItemImageAdapter(private val items: MutableList<String>) :
     RecyclerView.Adapter<ItemImageAdapter.ItemImageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemImageViewHolder {
-        TODO("Not yet implemented")
+        return ItemImageViewHolder.from(parent)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return items.size
     }
 
     override fun onBindViewHolder(holder: ItemImageViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.bind(items[position])
     }
 
-    class ItemImageViewHolder(private val binding: ItemLostBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ItemImageViewHolder(private val binding: ItemDetailImageBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+            private val storage = FirebaseStorage.getInstance()
+        fun bind(imageUri: String) {
+            val storageRef = storage.getReferenceFromUrl(imageUri)
+            storageRef.downloadUrl.addOnSuccessListener { uri ->
+                Glide.with(itemView)
+                    .load(uri)
+                    .into(binding.image)
+            }
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ItemImageViewHolder {
+                val binding =
+                    ItemDetailImageBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                return ItemImageViewHolder(binding)
+            }
+        }
 
     }
 }

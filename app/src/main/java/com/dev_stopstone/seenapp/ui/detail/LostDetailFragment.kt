@@ -6,9 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
 import com.dev_stopstone.seenapp.R
 import com.dev_stopstone.seenapp.databinding.FragmentLostDetailBinding
+import com.dev_stopstone.seenapp.ui.home.ItemImageAdapter
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.MapView
@@ -39,8 +39,7 @@ class LostDetailFragment : Fragment(), OnMapReadyCallback {
         with(binding) {
             val lostItem = args.lostItem
 
-            Glide.with(this@LostDetailFragment)
-
+            viewPagerLostItemDetailImage.adapter = ItemImageAdapter(lostItem.imageUris)
             tvLostItemDetailState.text = "찾는 중"
             tvLostItemDetailTitle.text = lostItem.title
             tvLostItemDetailPublishAt.text = lostItem.createAt
