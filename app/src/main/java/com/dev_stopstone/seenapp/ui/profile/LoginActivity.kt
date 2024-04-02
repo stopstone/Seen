@@ -62,6 +62,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     val intent = Intent(this, ProfileAddActivity::class.java)
                     startActivity(intent)
+                    finish()
                     Toast.makeText(this, "${account.displayName} 님 안녕하세요.", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -70,8 +71,6 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this, task.exception.toString(), Toast.LENGTH_LONG).show()
         }
     }
-
-
 }
 
 
