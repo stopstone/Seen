@@ -71,7 +71,7 @@ class RegisterLostItemActivity : AppCompatActivity() {
             btnRegisterCompleteButton.setOnClickListener {
                 val lostItem = LostItem(
                     postId = "${postRef.key}",
-                    uId = "${auth.currentUser?.uid}",
+                    uid = auth.currentUser!!.uid,
                     title = "${etRegisterItemTitle.text}",
                     imageUris = getAllImageList("${postRef.key}"),
                     description = "${etRegisterItemDescription.text}",
