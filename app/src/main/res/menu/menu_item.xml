@@ -4,4 +4,10 @@
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_navigation_home"
         android:title="@string/label_home" />
+
+    <item
+        android:id="@+id/navigation_location"
+        android:icon="@drawable/ic_navigation_map"
+        android:title="지도" />
+
 </menu>

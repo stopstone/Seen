@@ -31,4 +31,9 @@
         android:name="com.dev_stopstone.seenapp.ui.register.RegisterLostItemActivity"
         android:label="RegisterLostItemActivity"
         tools:layout="@layout/activity_register_lost_item" />
+    <fragment
+        android:id="@+id/navigation_location"
+        android:name="com.dev_stopstone.seenapp.ui.location.LocationFragment"
+        android:label="LocationFragment"
+        tools:layout="@layout/fragment_location"/>
 </navigation>
