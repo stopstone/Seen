@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.dev_stopstone.seenapp.MainActivity
 import com.dev_stopstone.seenapp.data.User
 import com.dev_stopstone.seenapp.databinding.ActivityProfileAddBinding
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
@@ -21,6 +22,7 @@ import com.google.firebase.storage.ktx.storage
 
 class ProfileAddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityProfileAddBinding
+    private lateinit var auth: FirebaseAuth
     private lateinit var database: FirebaseDatabase
     private lateinit var storage: FirebaseStorage
     private lateinit var selectedImageUri: Uri
@@ -30,6 +32,7 @@ class ProfileAddActivity : AppCompatActivity() {
         binding = ActivityProfileAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
         selectedImageUri = Uri.EMPTY
+        auth = Firebase.auth
         setListener()
     }
 
@@ -51,21 +54,23 @@ class ProfileAddActivity : AppCompatActivity() {
 
     private fun createUserInfo(): User {
         database = Firebase.database
-        val userRef = database.getReference("users")
+        val uid = auth.currentUser?.uid.toString()
+        val userRef = database.getReference("users").push().child(uid)
 
         val user = User(
+            uId = uid,
             nickName = "${binding.etInputProfileNickname.text}",
         )
-        userRef.push().child("profile").setValue(user)
-        profileUpload(selectedImageUri)
+        userRef.child("profile").setValue(user)
+        profileUpload(selectedImageUri, uid)
 
         return user
     }
 
-    private fun profileUpload(uri: Uri) {
+    private fun profileUpload(uri: Uri, uid: String) {
         storage = Firebase.storage
         val profileRef = storage.getReference("users")
-        val imageRef = profileRef.child("${Firebase.auth.currentUser!!.uid}.png")
+        val imageRef = profileRef.child("${uid}.png")
         imageRef.putFile(uri)
     }
 
