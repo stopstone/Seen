@@ -51,9 +51,7 @@ class LocationFragment : Fragment(), OnMapReadyCallback {
             LOCATION_PERMISSION_REQUEST_CODE
         )
         val mapFragment = childFragmentManager.findFragmentById(R.id.map_fragment) as MapFragment?
-        mapFragment?.apply {
-            getMapAsync(this@LocationFragment)
-        }
+        mapFragment?.getMapAsync(this)
 
         val sheetBehavior = BottomSheetBehavior.from(binding.include.bottomSheet)
         sheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
