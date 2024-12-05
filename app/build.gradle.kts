@@ -1,3 +1,6 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,6 +8,10 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-parcelize")
 }
+
+val localPropertiesFile = rootProject.file("local.properties")
+val properties = Properties()
+properties.load(FileInputStream(localPropertiesFile))
 
 android {
     namespace = "com.dev_stopstone.seenapp"
@@ -18,6 +25,16 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "CLIENT_ID", "\"${properties["client.id"]}\"")
+        buildConfigField("String", "CLIENT_SECRET", "\"${properties["client.secret"]}\"")
+
+        val naverClientId = properties["client.id"] as? String ?: ""
+        val naverClientSecret = properties["client.secret"] as? String ?: ""
+
+        manifestPlaceholders["NAVER_API_ID"] = naverClientId
+        manifestPlaceholders["NAVER_API_SECRET"] = naverClientSecret
+
     }
 
     buildTypes {
@@ -31,6 +48,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

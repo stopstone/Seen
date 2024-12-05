@@ -51,10 +51,10 @@
 
         <meta-data
             android:name="com.naver.maps.map.CLIENT_ID"
-            android:value="lj8zi1w1sr" />
+            android:value="NAVER_API_ID" />
         <meta-data
             android:name="com.naver.maps.map.CLINET_SECRET"
-            android:value="yqKIrCDuxgrZaj1hKCoRlMqhOm2W2A4m3GMJYXFM" />
+            android:value="NAVER_API_SECRET" />
     </application>
 
 </manifest>
