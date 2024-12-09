@@ -29,12 +29,10 @@ android {
         buildConfigField("String", "CLIENT_ID", "\"${properties["client.id"]}\"")
         buildConfigField("String", "CLIENT_SECRET", "\"${properties["client.secret"]}\"")
 
-        val naverClientId = properties["client.id"] as? String ?: ""
-        val naverClientSecret = properties["client.secret"] as? String ?: ""
-
-        manifestPlaceholders["NAVER_API_ID"] = naverClientId
-        manifestPlaceholders["NAVER_API_SECRET"] = naverClientSecret
-
+        manifestPlaceholders.apply {
+            put("NAVER_API_ID", properties["client.id"] ?: "")
+            put("NAVER_API_SECRET", properties["client.secret"] ?: "")
+        }
     }
 
     buildTypes {
